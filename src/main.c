@@ -10,11 +10,12 @@
 int main(int argc, char **argv)
 {
     args_t args;
+    int status = EXIT_SUCCESS;
 
     if (load_args(argc, argv, &args) != EXIT_SUCCESS) {
         return EXIT_ERROR;
     }
-    // TODO
+    status = main_logic(&args);
     clean_args(&args);
-    return EXIT_SUCCESS;
+    return status;
 }

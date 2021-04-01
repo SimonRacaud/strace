@@ -13,6 +13,12 @@ SRC_FILES	=	main.c				\
 				args/clean_args.c	\
 				args/arg_pid_list.c	\
 				args/usage.c		\
+				logic/main_logic.c						\
+				logic/cmd_child_process.c				\
+				logic/tracer/tracer.c					\
+				logic/tracer/tracer_process_syscall.c	\
+				logic/tracer/syscall_show_args.c		\
+				logic/tracer/syscall_show_return.c		\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 
@@ -20,7 +26,7 @@ OBJ	=	$(SRC:.c=.o)
 
 NAME	=	strace
 
-CFLAGS	+= -std=gnu11 -Wall -Wextra -W -Werror $(INCLUDE)
+CFLAGS	+= -std=gnu11 -Wall -Wextra -W $(INCLUDE)
 
 INCLUDE = -I./include
 
