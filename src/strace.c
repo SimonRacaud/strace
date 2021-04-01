@@ -2,14 +2,13 @@
 ** EPITECH PROJECT, 2021
 ** B-PSU-402-REN-4-1-strace-simon.racaud
 ** File description:
-**
+** Syscalls description structure array
 */
 
 #include "../include/strace.h"
 #include <stdlib.h>
 
-struct s_syscall
-    g_syscalls[] =
+const struct s_syscall g_syscalls[] =
         {
             {.id = 0,
                 .name = "read",
@@ -2478,13 +2477,10 @@ struct s_syscall
                 .name = "exit_group",
                 .noreturn = false,
                 .retval = T_DEFAULT,
-                .argc = 4,
+                .argc = 1,
                 .args =
                     {
-                        {.custom = false, .printer = {.type = T_DEFAULT}},
-                        {.custom = false, .printer = {.type = T_DEFAULT}},
-                        {.custom = false, .printer = {.type = T_DEFAULT}},
-                        {.custom = false, .printer = {.type = T_DEFAULT}},
+                        {.custom = false, .printer = {.type = T_DEFAULT}}
                     }},
             {.id = 232,
                 .name = "epoll_wait",
