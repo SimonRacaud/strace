@@ -13,13 +13,14 @@ int push_pid_value(args_t *args, const char *value)
 
     for (size_t i = 0; value[i] != '\0'; i++) {
         if (value[i] < '0' || value[i] > '9') {
-            fprintf(stderr, "strace: Invalid process id: '%s'\n", value);
+            fprintf(
+                stderr, "%s: Invalid process id: '%s'\n", args->binary, value);
             return EXIT_ERROR;
         }
     }
     val = strtoul(value, NULL, 0xA);
     if (val == 0) {
-        fprintf(stderr, "strace: Invalid process id: '%s'\n", value);
+        fprintf(stderr, "%s: Invalid process id: '%s'\n", args->binary, value);
         return EXIT_ERROR;
     }
     return push_pid(&(args->attach_list), val);

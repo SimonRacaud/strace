@@ -7,11 +7,12 @@
 
 #include "args.h"
 
-static void init_args(args_t *args)
+static void init_args(args_t *args, char *bin)
 {
     args->attach_list = NULL;
     args->detailled = false;
     args->cmd = NULL;
+    args->binary = bin;
 }
 
 static int invalid_arg(void)
@@ -59,7 +60,7 @@ int load_args(int argc, char **argv, args_t *args)
     if (argc < 2) {
         return invalid_amount_arguments(argv[0]);
     }
-    init_args(args);
+    init_args(args, argv[0]);
     while (opt != -1 && opt != '?') {
         if (process_flag(argv, args, opt) != EXIT_SUCCESS)
             return EXIT_ERROR;
