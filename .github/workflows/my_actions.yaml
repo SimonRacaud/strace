@@ -1,0 +1,55 @@
+name: C project
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    name: Building
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile project
+        run: make
+
+      - name: Clean project
+        run: make clean
+
+      - name: Full clean and compile project
+        run: make re
+
+      - name: Full clean project
+        run: make fclean
+
+  Unit_tests:
+    needs: build
+    runs-on: ubuntu-18.04
+    name: Unit testing
+
+    steps:
+      - name: Install criterion and gcovr
+        run: |
+          sudo add-apt-repository ppa:snaipewastaken/ppa
+          sudo apt update
+          sudo apt install criterion-dev gcovr
+
+      - uses: actions/checkout@v2
+      - name: Compile and launch tests
+        run: make tests_run
+
+  Functional_tests:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Functional testing
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Compile project
+        run: make
+
+      - name: Launch functional tests
+        run: ./tests/all_tests.sh
