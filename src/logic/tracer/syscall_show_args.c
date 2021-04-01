@@ -31,14 +31,20 @@ int syscall_show_args(
     args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info)
 {
     unsigned long long reg_value;
+    arg_t arg;
+    int size;
 
     for (size_t i = 0; i < info->argc; i++) {
         if (i != 0) {
-            fprintf(stderr, ", ");
+            args->line_length += fprintf(stderr, ", ");
         }
         reg_value = register_find(i, regs);
-        // TODO : show register value
-        fprintf(stderr, "%llu", reg_value); // TEMP
+        arg.type = info->args[i].printer.type;
+        arg.value = reg_value;
+        size = print_register(&arg, child_pid, regs, args);
+        if (size == -1)
+            return EXIT_ERROR;
+        args->line_length += size;
     }
     return EXIT_SUCCESS;
 }

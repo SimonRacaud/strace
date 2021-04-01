@@ -19,6 +19,12 @@ SRC_FILES	=	main.c				\
 				logic/tracer/tracer_process_syscall.c	\
 				logic/tracer/syscall_show_args.c		\
 				logic/tracer/syscall_show_return.c		\
+				logic/display/print_register.c			\
+				logic/display/print_int.c				\
+				logic/display/print_long.c				\
+				logic/display/print_pointer.c			\
+				logic/display/print_size_t.c			\
+				logic/display/print_string.c			\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

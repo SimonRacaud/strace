@@ -20,6 +20,7 @@ typedef struct app_args {
     pid_list_t *attach_list;
     bool detailled;
     char **cmd;
+    size_t line_length;
     char *binary;
 } args_t;
 

@@ -47,11 +47,13 @@ static bool is_syscall(user_regs_t *regs, pid_t child_pid)
 
 static int tracer_parent_process(args_t *args, pid_t child_pid)
 {
-    int ret;
+    int ret = EXIT_SUCCESS;
     user_regs_t regs;
 
-    if (waitchild(child_pid, args))
+    if (waitchild(child_pid, args) == 1) {
+        fprintf(stderr, "child exited unexpectedly\n");
         return 84;
+    }
     do {
         if (ptrace(PTRACE_GETREGS, child_pid, NULL, &regs) == -1) {
             perror(args->binary);

@@ -13,16 +13,14 @@
 #include <sys/types.h>
 #include <sys/user.h>
 
+#include "args_t.h"
+
 #define STRACE_SYSCALL_ARGS_MAX 6
 
-struct s_strace_opts {
-    // TODO, faites la votre :)
-};
-
 typedef int (*t_printer)(unsigned long long int, pid_t,
-    const struct user_regs_struct *, const struct s_strace_opts *);
+    const struct user_regs_struct *, const args_t *);
 
-enum e_type {
+typedef enum e_type {
     T_DEFAULT,
     T_INTEGER,
     T_POINTER,
@@ -31,7 +29,7 @@ enum e_type {
     T_ULONG,
     T_SIZE_T,
     T_SSIZE_T,
-};
+} e_type;
 
 struct s_syscall_arg {
     bool custom;

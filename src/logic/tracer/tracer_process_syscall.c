@@ -19,9 +19,9 @@ static const syscall_t *getSyscallInfo(long long unsigned rax)
     return NULL;
 }
 
-static inline void print_syscall_name(const syscall_t *info)
+static inline int print_syscall_name(const syscall_t *info)
 {
-    fprintf(stderr, "%s(", info->name);
+    return fprintf(stderr, "%s(", info->name);
 }
 
 int tracer_process_syscall(args_t *args, user_regs_t *regs, pid_t child_pid)
@@ -33,7 +33,8 @@ int tracer_process_syscall(args_t *args, user_regs_t *regs, pid_t child_pid)
             regs->rax);
         return EXIT_SUCCESS;
     }
-    print_syscall_name(info);
+    args->line_length = 0;
+    args->line_length += print_syscall_name(info);
     if (syscall_show_args(args, regs, child_pid, info) != EXIT_SUCCESS)
         return EXIT_ERROR;
     if (syscall_show_return(args, regs, child_pid, info) != EXIT_SUCCESS)
