@@ -7,7 +7,12 @@
 
 DSRC	=	./src/
 
-SRC_FILES	=	main.c		\
+SRC_FILES	=	main.c				\
+				strace.c			\
+				args/load_args.c	\
+				args/clean_args.c	\
+				args/arg_pid_list.c	\
+				args/usage.c		\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 
@@ -20,6 +25,7 @@ CFLAGS	+= -std=gnu11 -Wall -Wextra -W -Werror $(INCLUDE)
 INCLUDE = -I./include
 
 debug: CFLAGS += -g
+debug: all
 
 all: $(NAME)
 

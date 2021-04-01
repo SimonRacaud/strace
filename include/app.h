@@ -8,11 +8,21 @@
 #ifndef APP_H_
 #define APP_H_
 
-typedef struct app_args {
-    pid_t *attach_list;
-    size_t attach_list_size;
-    bool detailled;
-} args_t;
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+#include "args_t.h"
+
+#define EXIT_ERROR 84;
+
+
+
+// Args Management
+int load_args(int argc, char **argv, args_t *args);
+void clean_args(args_t *args);
+
+//
 
 #endif // APP_H_

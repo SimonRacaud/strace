@@ -6,6 +6,7 @@ bootstrap_strace
 B-PSU-402_strace.pdf
 PSU_strace_2019
 .idea
+strace
 ### C ###
 # Prerequisites
 *.d

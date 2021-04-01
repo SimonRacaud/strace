@@ -15,12 +15,12 @@
 
 #define STRACE_SYSCALL_ARGS_MAX 6
 
-typedef int (*t_printer)(unsigned long long int, pid_t,
-    const struct user_regs_struct *, const struct s_strace_opts *);
-
 struct s_strace_opts {
     // TODO, faites la votre :)
 };
+
+typedef int (*t_printer)(unsigned long long int, pid_t,
+    const struct user_regs_struct *, const struct s_strace_opts *);
 
 enum e_type {
     T_DEFAULT,
