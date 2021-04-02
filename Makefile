@@ -25,6 +25,8 @@ SRC_FILES	=	main.c				\
 				logic/display/print_pointer.c			\
 				logic/display/print_size_t.c			\
 				logic/display/print_string.c			\
+				attach/attach_processus.c				\
+				attach/detach_processus.c				\
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 

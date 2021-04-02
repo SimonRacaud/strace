@@ -10,17 +10,18 @@
 int main_logic(args_t *args)
 {
     if (args->attach_list != NULL) {
-        // TODO : handle -p flag
-        // catch (CTRL + C) : signal
-        // PTRACE_ATTACH
+        if (attach_processus(args) != EXIT_SUCCESS) {
+            return EXIT_ERROR;
+        }
     }
     if (args->cmd != NULL) {
-        if (tracer(args) != EXIT_SUCCESS)
+        if (trace_cmd(args) != EXIT_SUCCESS)
             return EXIT_ERROR;
     }
     if (args->attach_list != NULL) {
-        // TODO : handle -p flag
-        // PTRACE_DETACH
+        if (detach_processus(args) != EXIT_SUCCESS) {
+            return EXIT_ERROR;
+        }
     }
     return EXIT_SUCCESS;
 }

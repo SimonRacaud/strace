@@ -18,6 +18,7 @@ typedef struct pid_list {
 
 typedef struct app_args {
     pid_list_t *attach_list;
+    bool detached;
     bool detailled;
     char **cmd;
     size_t line_length;

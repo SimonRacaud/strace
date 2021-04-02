@@ -47,7 +47,8 @@ int cmd_child_process(args_t *args);
 
 int main_logic(args_t *args);
 
-int tracer(args_t *args);
+int trace_cmd(args_t *args);
+int processus_tracer(args_t *args, pid_t child_pid);
 
 int tracer_process_syscall(args_t *args, user_regs_t *regs, pid_t child_pid);
 int syscall_show_return(
@@ -86,5 +87,9 @@ int print_ssize_t(unsigned long long int reg,
 int print_string(unsigned long long int reg, pid_t child_pid,
     __attribute__((unused)) const user_regs_t *regs,
     __attribute__((unused)) const args_t *args);
+
+// Attach processus
+int attach_processus(args_t *args);
+int detach_processus(args_t *args);
 
 #endif // APP_H_

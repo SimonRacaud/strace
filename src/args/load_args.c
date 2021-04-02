@@ -13,6 +13,7 @@ static void init_args(args_t *args, char *bin)
     args->detailled = false;
     args->cmd = NULL;
     args->binary = bin;
+    args->detached = false;
 }
 
 static int invalid_arg(void)

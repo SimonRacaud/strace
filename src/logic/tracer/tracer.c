@@ -45,7 +45,7 @@ static bool is_syscall(user_regs_t *regs, pid_t child_pid)
     return false;
 }
 
-static int tracer_parent_process(args_t *args, pid_t child_pid)
+int processus_tracer(args_t *args, pid_t child_pid)
 {
     int ret = EXIT_SUCCESS;
     user_regs_t regs;
@@ -69,7 +69,7 @@ static int tracer_parent_process(args_t *args, pid_t child_pid)
     return EXIT_SUCCESS;
 }
 
-int tracer(args_t *args)
+int trace_cmd(args_t *args)
 {
     pid_t child_pid = fork();
 
@@ -80,6 +80,6 @@ int tracer(args_t *args)
     } else if (child_pid == 0) {
         return cmd_child_process(args);
     } else {
-        return tracer_parent_process(args, child_pid);
+        return processus_tracer(args, child_pid);
     }
 }
