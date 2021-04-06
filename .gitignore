@@ -120,4 +120,7 @@ NormEZ.rb
 .vscode
 .vscode/
 
+file_output_1
+file_output_2
+
 # End of https://www.gitignore.io/api/c,emacs
