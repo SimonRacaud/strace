@@ -37,6 +37,7 @@ typedef struct arg {
 } arg_t;
 
 #define EXIT_ERROR 84
+#define READ_SYSCALL 0
 
 // Args Management
 int load_args(int argc, char **argv, args_t *args);
@@ -54,6 +55,13 @@ int tracer_process_syscall(args_t *args, user_regs_t *regs, pid_t child_pid);
 int syscall_show_return(
     args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info);
 int syscall_show_args(
+    args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info);
+
+int syscall_show_return_value(
+    args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info);
+long long register_find(int i, user_regs_t *regs);
+// Special case : tracer
+int trace_read(
     args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info);
 
 // DISPLAY
@@ -87,6 +95,9 @@ int print_ssize_t(unsigned long long int reg,
 int print_string(unsigned long long int reg, pid_t child_pid,
     __attribute__((unused)) const user_regs_t *regs,
     __attribute__((unused)) const args_t *args);
+
+// specific case : print
+int print_substring(unsigned long long int reg, pid_t child_pid, size_t size);
 
 // Attach processus
 int attach_processus(args_t *args);

@@ -19,12 +19,14 @@ SRC_FILES	=	main.c				\
 				logic/tracer/tracer_process_syscall.c	\
 				logic/tracer/syscall_show_args.c		\
 				logic/tracer/syscall_show_return.c		\
+				logic/tracer/special_case/trace_read.c	\
 				logic/display/print_register.c			\
 				logic/display/print_int.c				\
 				logic/display/print_long.c				\
 				logic/display/print_pointer.c			\
 				logic/display/print_size_t.c			\
 				logic/display/print_string.c			\
+				logic/display/print_substring.c			\
 				attach/attach_processus.c				\
 				attach/detach_processus.c				\
 

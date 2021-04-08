@@ -22,16 +22,12 @@ static inline void print_padding(args_t *args)
     fprintf(stderr, " = ");
 }
 
-static int syscall_show_return_value(
+int syscall_show_return_value(
     args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info)
 {
     int status = EXIT_SUCCESS;
     arg_t arg = {.type = info->retval, .value = 0};
 
-    if (ptrace(PTRACE_SINGLESTEP, child_pid, NULL, NULL) == -1)
-        return error(args->binary);
-    if (waitpid(child_pid, 0, 0) == -1)
-        return error(args->binary);
     if (ptrace(PTRACE_GETREGS, child_pid, NULL, regs) == -1)
         return error(args->binary);
     arg.value = regs->rax;
@@ -51,6 +47,10 @@ int syscall_show_return(
             fprintf(stderr, "?\n");
             return EXIT_SUCCESS;
         }
+        if (ptrace(PTRACE_SINGLESTEP, child_pid, NULL, NULL) == -1)
+            return error(args->binary);
+        if (waitpid(child_pid, 0, 0) == -1)
+            return error(args->binary);
         return syscall_show_return_value(args, regs, child_pid, info);
     } else {
         fprintf(stderr, ")\n");
