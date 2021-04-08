@@ -27,6 +27,8 @@ SRC_FILES	=	main.c				\
 				logic/display/print_size_t.c			\
 				logic/display/print_string.c			\
 				logic/display/print_substring.c			\
+				errno/errno.c							\
+				errno/errno_handler.c					\
 				attach/attach_processus.c				\
 				attach/detach_processus.c				\
 

@@ -32,7 +32,9 @@ int syscall_show_return_value(
         return error(args->binary);
     arg.value = regs->rax;
     print_padding(args);
-    status = print_register(&arg, child_pid, regs, args);
+    if (errno_handler(&arg) == EXIT_FAILURE) {
+        status = print_register(&arg, child_pid, regs, args);
+    }
     fprintf(stderr, "\n");
     return status != -1 ? EXIT_SUCCESS : EXIT_ERROR;
 }

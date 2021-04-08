@@ -64,6 +64,9 @@ long long register_find(int i, user_regs_t *regs);
 int trace_read(
     args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info);
 
+// errno
+int errno_handler(arg_t *return_value);
+
 // DISPLAY
 int print_register(
     arg_t *val, pid_t child_pid, const user_regs_t *regs, const args_t *args);
