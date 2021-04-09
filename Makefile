@@ -32,7 +32,7 @@ SRC_FILES	=	main.c				\
 				attach/attach_processus.c				\
 				attach/detach_processus.c				\
 				\
-				special_cases/spe_stat.c                \
+				logic/tracer/special_case/spe_stat.c    \
 
 SRC	=	$(addprefix $(DSRC), $(SRC_FILES))
 
