@@ -49,21 +49,12 @@ static int show_args(
     return EXIT_SUCCESS;
 }
 
-static inline int execute_syscall(pid_t child_pid, args_t *args)
-{
-    if (ptrace(PTRACE_SINGLESTEP, child_pid, NULL, NULL) == -1)
-        return error(args->binary);
-    if (waitpid(child_pid, 0, 0) == -1)
-        return error(args->binary);
-    return EXIT_SUCCESS;
-}
-
 int trace_read(
     args_t *args, user_regs_t *regs, pid_t child_pid, const syscall_t *info)
 {
     if (show_args(info, args, regs, child_pid) != EXIT_SUCCESS)
         return EXIT_ERROR;
-    if (execute_syscall(child_pid, args) != EXIT_SUCCESS)
+    if (execute_syscall(child_pid, args, true) != EXIT_SUCCESS)
         return EXIT_ERROR;
     for (size_t i = 0; i < 2; i++) {
         if (show_args(info, args, regs, child_pid) != EXIT_SUCCESS)

@@ -10,6 +10,8 @@
 
 #include "strace.h"
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
+#include <stddef.h>
 
 /**
  * @brief Print arguments of stat function when caught

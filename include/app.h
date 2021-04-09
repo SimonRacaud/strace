@@ -18,6 +18,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #include <sys/syscall.h>
 
@@ -42,7 +43,7 @@ typedef struct arg
     unsigned long long int value;
 } arg_t;
 
-#define EXIT_ERROR 84
+#define EXIT_ERROR   84
 #define READ_SYSCALL 0
 
 // Args Management
@@ -56,6 +57,7 @@ int main_logic(args_t *args);
 
 int trace_cmd(args_t *args);
 int processus_tracer(args_t *args, pid_t child_pid);
+int execute_syscall(pid_t child_pid, const args_t *args, bool print_error);
 
 int tracer_process_syscall(args_t *args, user_regs_t *regs, pid_t child_pid);
 int syscall_show_return(
