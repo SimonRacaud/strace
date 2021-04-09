@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** B-PSU-402-REN-4-1-strace-simon.racaud
 ** File description:
-**
+** strace.h
 */
 
 #ifndef STRACE_H_
@@ -20,7 +20,8 @@
 typedef int (*t_printer)(unsigned long long int, pid_t,
     const struct user_regs_struct *, const args_t *);
 
-typedef enum e_type {
+typedef enum e_type
+{
     T_DEFAULT,
     T_INTEGER,
     T_POINTER,
@@ -31,7 +32,8 @@ typedef enum e_type {
     T_SSIZE_T,
 } e_type;
 
-struct s_syscall_arg {
+struct s_syscall_arg
+{
     bool custom;
     union {
         enum e_type type;
@@ -39,7 +41,8 @@ struct s_syscall_arg {
     } printer;
 };
 
-typedef struct s_syscall {
+typedef struct s_syscall
+{
     unsigned long long id;
     const char *name;
     bool noreturn;
