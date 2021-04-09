@@ -12,10 +12,14 @@ static inline int print_file_type(dev_t st_mode, bool *is_dir_file)
     switch (st_mode & S_IFMT) {
         case S_IFBLK: return fprintf(stderr, "S_IFBLK");
         case S_IFCHR: return fprintf(stderr, "S_IFCHR");
-        case S_IFDIR: *is_dir_file = true; return fprintf(stderr, "S_IFDIR");
+        case S_IFDIR:
+            *is_dir_file = true;
+            return fprintf(stderr, "S_IFDIR");
         case S_IFIFO: return fprintf(stderr, "S_IFIFO");
         case S_IFLNK: return fprintf(stderr, "S_IFLNK");
-        case S_IFREG: *is_dir_file = true; return fprintf(stderr, "S_IFREG");
+        case S_IFREG:
+            *is_dir_file = true;
+            return fprintf(stderr, "S_IFREG");
         case S_IFSOCK: return fprintf(stderr, "S_IFSOCK");
     }
     return fprintf(stderr, "?");

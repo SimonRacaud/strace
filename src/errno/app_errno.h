@@ -13,7 +13,8 @@
 #include <stdio.h>
 #include "app.h"
 
-typedef struct errno_name {
+typedef struct errno_name
+{
     int code;
     const char *name;
 } errno_name_t;

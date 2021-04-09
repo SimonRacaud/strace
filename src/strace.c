@@ -2779,8 +2779,7 @@ const struct s_syscall
                         {.custom = false, .printer = {.type = T_INTEGER}},
                         {.custom = false, .printer = {.type = T_STRING}},
                         {.custom = false, .printer = {.type = T_INTEGER}},
-                        {.custom = false,
-                            .printer = {.type = T_DEFAULT}}, // mode_t
+                        {.custom = false, .printer = {.type = T_DEFAULT}},
                     }},
             {.id = 258,
                 .name = "mkdirat",

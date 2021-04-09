@@ -26,7 +26,6 @@ static int waitchild(pid_t pid, args_t *args)
         show_exit_status(status);
         return 1;
     } else {
-        // TODO : error management
         return 1;
     }
 }

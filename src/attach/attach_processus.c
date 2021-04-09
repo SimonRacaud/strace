@@ -17,12 +17,12 @@ static args_t *global_variable_not_really_hidden(args_t *args)
     return save;
 }
 
-static void sig_handler(__attribute__((unused))int code)
+static void sig_handler(__attribute__((unused)) int code)
 {
     args_t *args = global_variable_not_really_hidden(NULL);
 
     detach_processus(args);
-    exit(0); // TODO : exit smootly
+    exit(0);
 }
 
 static int attach_one_processus(args_t *args, pid_list_t *node)
