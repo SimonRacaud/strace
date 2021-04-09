@@ -35,9 +35,13 @@ int tracer_process_syscall(args_t *args, user_regs_t *regs, pid_t child_pid)
     }
     args->line_length = 0;
     args->line_length += print_syscall_name(info);
-    if (syscall_show_args(args, regs, child_pid, info) != EXIT_SUCCESS)
-        return EXIT_ERROR;
-    if (syscall_show_return(args, regs, child_pid, info) != EXIT_SUCCESS)
-        return EXIT_ERROR;
+    if (regs->rax == READ_SYSCALL) {
+        return trace_read(args, regs, child_pid, info);
+    } else {
+        if (syscall_show_args(args, regs, child_pid, info) != EXIT_SUCCESS)
+            return EXIT_ERROR;
+        if (syscall_show_return(args, regs, child_pid, info) != EXIT_SUCCESS)
+            return EXIT_ERROR;
+    }
     return EXIT_SUCCESS;
 }

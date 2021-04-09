@@ -142,7 +142,7 @@ const struct s_syscall g_syscalls[] = {
     {.id = 12,
         .name = "brk",
         .noreturn = false,
-        .retval = T_INTEGER,
+        .retval = T_DEFAULT,
         .argc = 1,
         .args =
             {
