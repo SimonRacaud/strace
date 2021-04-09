@@ -5,7 +5,8 @@
 ** Syscalls description structure array
 */
 
-#include "../include/strace.h"
+#include "strace.h"
+#include "special_cases.h"
 #include <stdlib.h>
 
 const struct s_syscall g_syscalls[] = {
@@ -59,7 +60,7 @@ const struct s_syscall g_syscalls[] = {
         .args =
             {
                 {.custom = false, .printer = {.type = T_STRING}},
-                {.custom = false, .printer = {.type = T_POINTER}}, // Struct
+                {.custom = true, .printer = {.callback = spe_stat}}, // Struct
             }},
     {.id = 5,
         .name = "fstat",

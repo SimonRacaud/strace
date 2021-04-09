@@ -21,17 +21,23 @@
 
 #include <sys/syscall.h>
 
+#include <errno.h>
+
 #include "strace.h"
 #include "args_t.h"
 
+#include "special_cases.h"
+
 typedef struct user_regs_struct user_regs_t;
 
-typedef struct print_reg {
+typedef struct print_reg
+{
     e_type type;
     t_printer func;
 } print_reg_t;
 
-typedef struct arg {
+typedef struct arg
+{
     e_type type;
     unsigned long long int value;
 } arg_t;
