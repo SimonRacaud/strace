@@ -10,13 +10,20 @@
 long long register_find(int i, user_regs_t *regs)
 {
     switch (i) {
-        case 0: return regs->rdi;
-        case 1: return regs->rsi;
-        case 2: return regs->rdx;
-        case 3: return regs->r10;
-        case 4: return regs->r8;
-        case 5: return regs->r9;
-        default: return 0;
+        case 0:
+            return regs->rdi;
+        case 1:
+            return regs->rsi;
+        case 2:
+            return regs->rdx;
+        case 3:
+            return regs->r10;
+        case 4:
+            return regs->r8;
+        case 5:
+            return regs->r9;
+        default:
+            return 0;
     }
 }
 
