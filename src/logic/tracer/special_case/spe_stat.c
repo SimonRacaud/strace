@@ -53,16 +53,20 @@ static int print_more_info(
     long my_variable = -1;
     size_t offset_elem = 0;
 
-    offset_elem = (is_dir_file) ? offsetof(struct stat, st_size)
-                                : offsetof(struct stat, st_rdev);
+    if (is_dir_file)
+        offset_elem = offsetof(struct stat, st_size);
+    else
+        offset_elem = offsetof(struct stat, st_rdev);
     my_variable = ptrace(PTRACE_PEEKDATA, child_pid, reg + offset_elem, NULL);
     if (my_variable == -1 && errno)
         return -1;
-    size += (is_dir_file) ? fprintf(stderr, "st_size=%lu", my_variable)
-                          : fprintf(stderr,
-                              "st_rdev=makedev(0x%x, 0x%x)",
-                              major(my_variable),
-                              minor(my_variable));
+    if (is_dir_file) {
+        size += fprintf(stderr, "st_size=%lu", my_variable);
+    } else {
+        size += fprintf(stderr, "st_rdev=makedev");
+        size += fprintf(stderr, "(0x%x, ", major(my_variable));
+        size += fprintf(stderr, "0x%x)", minor(my_variable));
+    }
     return size;
 }
 
