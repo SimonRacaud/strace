@@ -7,13 +7,13 @@
 
 #include "app.h"
 
-static inline int error(const char *bin)
+static int error(const char *bin)
 {
     perror(bin);
     return EXIT_ERROR;
 }
 
-static inline int show_read_string_content(
+static int show_read_string_content(
     args_t *args, pid_t child_pid, size_t *size, unsigned long long reg_value)
 {
     user_regs_t post_syscall_regs = {0};

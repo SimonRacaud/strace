@@ -7,7 +7,7 @@
 
 #include "app.h"
 
-static inline int print_file_type(dev_t st_mode, bool *is_dir_file)
+static int print_file_type(dev_t st_mode, bool *is_dir_file)
 {
     switch (st_mode & S_IFMT) {
         case S_IFBLK:

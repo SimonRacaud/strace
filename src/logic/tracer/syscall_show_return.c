@@ -7,13 +7,13 @@
 
 #include "app.h"
 
-static inline int error(const char *bin)
+static int error(const char *bin)
 {
     perror(bin);
     return EXIT_ERROR;
 }
 
-static inline void print_padding(args_t *args)
+static void print_padding(args_t *args)
 {
     fprintf(stderr, ")");
     for (size_t i = args->line_length + 1; i < 40; i++) {

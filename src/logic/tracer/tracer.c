@@ -7,7 +7,7 @@
 
 #include "app.h"
 
-static inline void show_exit_status(int wstatus)
+static void show_exit_status(int wstatus)
 {
     fprintf(stderr, "+++ exited with %d +++\n", WEXITSTATUS(wstatus));
 }

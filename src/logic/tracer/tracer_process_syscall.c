@@ -19,7 +19,7 @@ static const syscall_t *getSyscallInfo(long long unsigned rax)
     return NULL;
 }
 
-static inline int print_syscall_name(const syscall_t *info)
+static int print_syscall_name(const syscall_t *info)
 {
     return fprintf(stderr, "%s(", info->name);
 }
